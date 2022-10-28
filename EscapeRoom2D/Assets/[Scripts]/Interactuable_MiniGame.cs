@@ -6,6 +6,7 @@ public class Interactuable_MiniGame : MonoBehaviour, IInteractuableObject
     bool completed = false; 
 
     [SerializeField] string levelToLoad = "";
+    [SerializeField] int taskID = -1;
 
     public void OnClick()
     {
@@ -18,6 +19,9 @@ public class Interactuable_MiniGame : MonoBehaviour, IInteractuableObject
     void onCloseLevel(bool _wasCompleted)
     {
         completed = _wasCompleted;
+
+        LevelManager.Instance.tasksCompleted[taskID] = _wasCompleted;
+
         MiniGameLoader.Instance.onMiniGameClose -= onCloseLevel;
     }
 }
