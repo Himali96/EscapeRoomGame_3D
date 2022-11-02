@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 
+// To change the size of numbers, just update the 'numberButtons' array
+
 public class mg_pressInOrder : MonoBehaviour
 {
     [SerializeField] mg_pressInOrderButton[] numberButtons = null;
