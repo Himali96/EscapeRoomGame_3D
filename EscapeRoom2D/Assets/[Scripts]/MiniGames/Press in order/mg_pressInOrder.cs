@@ -14,6 +14,7 @@ public class mg_pressInOrder : MonoBehaviour
     int nextNumberShouldBePressed = 1;
 
     [SerializeField] Image progressImg = null;
+    [SerializeField] Sprite correctImg = null, incorrectImg = null;
 
 
     void Start()
@@ -43,13 +44,19 @@ public class mg_pressInOrder : MonoBehaviour
 
     public void NumberPressed(int _numberPressed)
     {
+        DOTween.KillAll();
+        progressImg.color = new Color(progressImg.color.r, progressImg.color.g, progressImg.color.b, 1f); ;
+
         if (nextNumberShouldBePressed == _numberPressed)
         {
             // Correct
             nextNumberShouldBePressed++;
-            ChnageColorProgressImg(Color.green);
+            ChangeSprite(correctImg);
 
-            if (nextNumberShouldBePressed == numberButtons.Length+1) // because number begin from 1
+            //ChnageColorProgressImg(Color.green);
+            //transform.GetChild(serialNumber).
+
+            if (nextNumberShouldBePressed == numberButtons.Length + 1) // because number begin from 1
             {
                 print("Level completed!");
                 MiniGameLoader.Instance.UnLoadLastLevel(true);
@@ -60,14 +67,20 @@ public class mg_pressInOrder : MonoBehaviour
         {
              // Error
             nextNumberShouldBePressed = 1;
-            ChnageColorProgressImg(Color.red);
+            ChangeSprite(incorrectImg);
+            //ChnageColorProgressImg(Color.red);
         }
+    }
+
+    void ChangeSprite(Sprite s)
+    {
+        progressImg.sprite = s;
+        progressImg.DOFade(0.0f, 2.0f);
     }
 
     void ChnageColorProgressImg(Color _color)
     {
         progressImg.color = _color;
         progressImg.DOColor(Color.white, 0.3f).SetDelay(2f);
-
     }
 }
