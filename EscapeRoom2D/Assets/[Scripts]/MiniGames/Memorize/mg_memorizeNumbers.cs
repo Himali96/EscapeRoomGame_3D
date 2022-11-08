@@ -19,6 +19,7 @@ public class mg_memorizeNumbers : MonoBehaviour
     int numbersToRememberIndex = 0;
 
     [SerializeField] Image progressImg = null;
+    [SerializeField] Sprite correctImg = null, incorrectImg = null;
 
     Tween tween_colorToWhite = null;
 
@@ -84,9 +85,13 @@ public class mg_memorizeNumbers : MonoBehaviour
 
     public void NumberPressed(int number)
     {
+        DOTween.KillAll();
+        progressImg.color = new Color(progressImg.color.r, progressImg.color.g, progressImg.color.b, 1f); ;
+
         if (numbersToRemember[numbersToRememberIndex] == number)
         {
-            ChnageColorProgressImg(Color.green);
+            //ChnageColorProgressImg(Color.green);
+            ChangeSprite(correctImg);
 
             numbersToRememberIndex++;
 
@@ -98,10 +103,17 @@ public class mg_memorizeNumbers : MonoBehaviour
         }
         else // Incorrect
         {
-            ChnageColorProgressImg(Color.red);
+            //ChnageColorProgressImg(Color.red);
+            ChangeSprite(incorrectImg);
 
             Invoke(nameof(GenerateRandomsToMemorize), 2f);
         }
+    }
+
+    void ChangeSprite(Sprite s)
+    {
+        progressImg.sprite = s;
+        progressImg.DOFade(0.0f, 2.0f);
     }
 
     void ChnageColorProgressImg(Color _color)
