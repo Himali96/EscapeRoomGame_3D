@@ -36,6 +36,9 @@ public class mg_connectWires_Manager : MonoBehaviour
             {
                 currentNode = hit.collider.GetComponent<mg_connectWires_Node>();
 
+                if (currentNode == null)
+                    return;
+
                 if (currentNode.sprRender.color == Color.white)
                 {
                     currentNode = null;
@@ -59,6 +62,9 @@ public class mg_connectWires_Manager : MonoBehaviour
             if (hit)
             {
                 mg_connectWires_Node hitNode = hit.collider.GetComponent<mg_connectWires_Node>();
+
+                if (!hitNode)
+                    return;
 
                 if (hitNode == currentNode) // Not process if is the same
                     return;
@@ -90,9 +96,18 @@ public class mg_connectWires_Manager : MonoBehaviour
                 continue;
             }
 
+            int whileSecurity = 0;
             mg_connectWires_Node currentNode = node;
             while (currentNode.connectionNode != null)
             {
+                whileSecurity++;
+
+                if (whileSecurity == 50)
+                {
+                    print("Exit from infinity while");
+                    return;
+                }
+
                 currentNode = currentNode.connectionNode;
 
                 if (currentNode.startPoint) // we reach the other start point
