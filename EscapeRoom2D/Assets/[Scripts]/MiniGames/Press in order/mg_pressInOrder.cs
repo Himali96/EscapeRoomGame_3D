@@ -4,11 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using Unity.Burst.CompilerServices;
 
 // To change the size of numbers, just update the 'numberButtons' array
 
 public class mg_pressInOrder : MonoBehaviour
 {
+    public GameObject InOrderMGObject;
+    LevelManager levelManager = null;
     [SerializeField] mg_pressInOrderButton[] numberButtons = null;
 
     int nextNumberShouldBePressed = 1;
@@ -16,10 +19,31 @@ public class mg_pressInOrder : MonoBehaviour
     [SerializeField] Image progressImg = null;
     [SerializeField] Sprite correctImg = null, incorrectImg = null;
 
+    Ray ray;
+    RaycastHit hit;
 
     void Start()
     {
         SetUpNumbers();
+        levelManager = GetComponent<LevelManager>();
+    }
+
+    private void Update()
+    {
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("InOrder") && !levelManager.tasksCompleted[1]) //&& levelManager.tasksCompleted[0])
+            {
+                InOrderMGObject.SetActive(true);
+                levelManager.tasksCompleted[1] = true;
+            }
+        }
+    }
+
+    public void InOrderExitButtonClicked()
+    {
+        InOrderMGObject.SetActive(false);
     }
 
     void SetUpNumbers()
@@ -58,11 +82,13 @@ public class mg_pressInOrder : MonoBehaviour
 
             if (nextNumberShouldBePressed == numberButtons.Length + 1) // because number begin from 1
             {
-                print("Level completed!");
-                MiniGameLoader.Instance.UnLoadLastLevel(true);
+                //print("Level completed!");
+                InOrderMGObject.SetActive(false);
+                //MiniGameLoader.Instance.UnLoadLastLevel(true);
             }
 
         }
+
         else
         {
              // Error

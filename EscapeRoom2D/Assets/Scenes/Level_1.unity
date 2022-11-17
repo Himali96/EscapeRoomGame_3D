@@ -1056,9 +1056,10 @@ GameObject:
   m_Component:
   - component: {fileID: 403704344}
   - component: {fileID: 403704345}
+  - component: {fileID: 403704346}
   m_Layer: 6
   m_Name: panel_task2
-  m_TagString: Untagged
+  m_TagString: InOrder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1130,6 +1131,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &403704346
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403704343}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &404112110
 GameObject:
   m_ObjectHideFlags: 0
@@ -4811,7 +4825,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1403083117}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1581837944}
+        m_TargetAssemblyTypeName: mg_pressInOrder, Assembly-CSharp
+        m_MethodName: InOrderExitButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1444018374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5179,6 +5205,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1581837945}
   - component: {fileID: 1581837944}
+  - component: {fileID: 1581837946}
   m_Layer: 0
   m_Name: _Manager
   m_TagString: Untagged
@@ -5198,6 +5225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b636ac30fccc154eb697b8a2f537a78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InOrderMGObject: {fileID: 235582353}
   numberButtons:
   - {fileID: 818412241}
   - {fileID: 369893917}
@@ -5227,6 +5255,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1581837946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581837943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21a5aab945fce2f4f8be49ee8f7681aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tasksCompleted: 0000
 --- !u!1 &1641586231
 GameObject:
   m_ObjectHideFlags: 0
@@ -6194,7 +6235,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928977947}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1928977950
 Camera:
   m_ObjectHideFlags: 0

@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour
             if (task == false) // This task is still missing to complete
                 return false;
         }
-
+        Debug.Log("level complete");
         // if code arrive here, all task have been completed
         return true;
     }

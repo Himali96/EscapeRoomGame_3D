@@ -4,11 +4,14 @@ using DG.Tweening;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Unity.Burst.CompilerServices;
 
 // To change the numbers to memorize just update the 'numberToMemorize' array
 
 public class mg_memorizeNumbers : MonoBehaviour
 {
+    public GameObject memorizeGameObject;
+    LevelManager levelManager = null;
     [SerializeField] float timeDisplayingNumbers = 4f;
 
     [SerializeField] mg_memorizeNumbersButton[] numberButtons = null;
@@ -23,10 +26,12 @@ public class mg_memorizeNumbers : MonoBehaviour
 
     Tween tween_colorToWhite = null;
 
+    Ray ray;
+    RaycastHit hit;
+
     void Start()
     {
-        SetUpNumbers();
-        Invoke(nameof(GenerateRandomsToMemorize), 1f);
+        levelManager = GetComponent<LevelManager>();
     }
 
     void SetUpNumbers()
@@ -36,6 +41,20 @@ public class mg_memorizeNumbers : MonoBehaviour
         {
             numberButtons[i].SetNumber(this, i+1);
             numberButtons[i].SetInteractuable(false);
+        }
+    }
+
+    private void Update()
+    {
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Memorize") && !levelManager.tasksCompleted[1] && levelManager.tasksCompleted[0])
+            {
+                memorizeGameObject.SetActive(true);
+                SetUpNumbers();
+                Invoke(nameof(GenerateRandomsToMemorize), 1f);
+            }
         }
     }
 
@@ -83,6 +102,11 @@ public class mg_memorizeNumbers : MonoBehaviour
         } );
     }
 
+    public void MemorizeExitButtonClicked()
+    {
+        memorizeGameObject.SetActive(false);
+    }
+
     public void NumberPressed(int number)
     {
         DOTween.KillAll();
@@ -97,8 +121,10 @@ public class mg_memorizeNumbers : MonoBehaviour
 
             if (numbersToRememberIndex == numbersToRemember.Length) // because number begin from 1
             {
-                print("Level completed!");
-                MiniGameLoader.Instance.UnLoadLastLevel(true);
+                //print("Level completed!");
+                memorizeGameObject.SetActive(false);
+                levelManager.tasksCompleted[1] = true;
+                //MiniGameLoader.Instance.UnLoadLastLevel(true);
             }
         }
         else // Incorrect
