@@ -7,6 +7,12 @@ TagManager:
   - Picture
   - Memorize
   - InOrder
+  - Knob
+  - Tools
+  - Screwdriver
+  - Drawer
+  - Door
+  - Menu
   layers:
   - Default
   - TransparentFX

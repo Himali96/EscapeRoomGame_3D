@@ -7,6 +7,7 @@ public class FixImageManager : MonoBehaviour
 {
     [SerializeField] RotateTheImageParts[] imageParts = null;
     LevelManager levelManager = null;
+    Level_2_LevelFlowManager flowManager = null;
     public GameObject pictureGameObject;
 
     Ray ray;
@@ -15,6 +16,7 @@ public class FixImageManager : MonoBehaviour
     private void Start()
     {
         levelManager = GetComponent<LevelManager>();
+        flowManager = GetComponent<Level_2_LevelFlowManager>();
     }
     // Update is called once per frame
     void Update()
@@ -25,8 +27,10 @@ public class FixImageManager : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Picture") && !levelManager.tasksCompleted[0])
             {
-                pictureGameObject.SetActive(true);
-
+                if (flowManager.isScrewDriverFound)
+                    pictureGameObject.SetActive(true);
+                else
+                    flowManager.txtInstructions.text = "Need Screwdriver to fix the Image";
             }
         }
 
@@ -35,6 +39,7 @@ public class FixImageManager : MonoBehaviour
             //Debug.Log("Picture Puzzle Done!");
             levelManager.tasksCompleted[0] = true;
             pictureGameObject.SetActive(false);
+            flowManager.UnlockTheDoor();
         }
     }
 

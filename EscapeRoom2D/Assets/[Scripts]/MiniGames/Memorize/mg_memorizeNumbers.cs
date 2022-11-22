@@ -12,6 +12,7 @@ public class mg_memorizeNumbers : MonoBehaviour
 {
     public GameObject memorizeGameObject;
     LevelManager levelManager = null;
+    Level_2_LevelFlowManager flowManager = null;
     [SerializeField] float timeDisplayingNumbers = 4f;
 
     [SerializeField] mg_memorizeNumbersButton[] numberButtons = null;
@@ -32,6 +33,7 @@ public class mg_memorizeNumbers : MonoBehaviour
     void Start()
     {
         levelManager = GetComponent<LevelManager>();
+        flowManager = GetComponent<Level_2_LevelFlowManager>();
     }
 
     void SetUpNumbers()
@@ -49,8 +51,9 @@ public class mg_memorizeNumbers : MonoBehaviour
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
-            if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Memorize") && !levelManager.tasksCompleted[1] && levelManager.tasksCompleted[0])
+            if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Memorize") && !levelManager.tasksCompleted[1])
             {
+                flowManager.txtInstructions.text = "";
                 memorizeGameObject.SetActive(true);
                 SetUpNumbers();
                 Invoke(nameof(GenerateRandomsToMemorize), 1f);
@@ -124,6 +127,8 @@ public class mg_memorizeNumbers : MonoBehaviour
                 //print("Level completed!");
                 memorizeGameObject.SetActive(false);
                 levelManager.tasksCompleted[1] = true;
+                flowManager.UnlockTheSafe();
+
                 //MiniGameLoader.Instance.UnLoadLastLevel(true);
             }
         }
