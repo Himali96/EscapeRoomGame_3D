@@ -83,4 +83,9 @@ public class Level_2_LevelFlowManager : MonoBehaviour
         txtInstructions.text = "";
         roomDoor.DORotate(new Vector3(0, 90f, 0), 3f);
     }
+
+    public void ToolsExitButtonClicked()
+    {
+        tools.SetActive(false);
+    }
 }
