@@ -48,6 +48,8 @@ public class mg_memorizeNumbers : MonoBehaviour
 
     private void Update()
     {
+        if (memorizeGameObject.activeSelf) return;
+
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
