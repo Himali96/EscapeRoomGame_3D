@@ -15,5 +15,10 @@ public static class UnityExtensions
         }
     }
 
-
+    public static bool IsEqual(this Color c1, Color c2)
+    {
+        return (Mathf.Abs(c1.r - c2.r) < 0.01f &&
+                Mathf.Abs(c1.g - c2.g) < 0.01f &&
+                Mathf.Abs(c1.b - c2.b) < 0.01f);
+    }
 }

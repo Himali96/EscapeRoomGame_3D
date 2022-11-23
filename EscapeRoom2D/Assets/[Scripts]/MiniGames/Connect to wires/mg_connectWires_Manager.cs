@@ -18,11 +18,23 @@ public class mg_connectWires_Manager : MonoBehaviour
     [Header("References")]
     [SerializeField] Camera cam= null;
     [SerializeField] mg_connectWires_Node[] startedNodes = null;
+    [SerializeField] Button resetBtn = null;
 
     bool isDragging = false;
     mg_connectWires_Node currentNode = null;
 
     RaycastHit2D hit;
+
+    void OnEnable()
+    {
+        resetBtn.gameObject.SetActive(true);
+    }
+
+    void OnDisable()
+    {
+        if(resetBtn)
+            resetBtn.gameObject.SetActive(false);
+    }
 
     void Update()
     {
@@ -39,7 +51,7 @@ public class mg_connectWires_Manager : MonoBehaviour
                 if (currentNode == null)
                     return;
 
-                if (currentNode.sprRender.color == Color.white)
+                if (currentNode.sprRender.color.IsEqual(Color.white))
                 {
                     currentNode = null;
                     return;
@@ -85,20 +97,32 @@ public class mg_connectWires_Manager : MonoBehaviour
 
     }
 
+    public void BtnReset()
+    {
+        foreach(mg_connectWires_Node node in GameObject.FindObjectsOfType<mg_connectWires_Node>())
+        {
+            node.Clean();
+            node.connectionNode = null;
+            node.connectionByNode = null;
+        }
+    }
+
     void CheckIfAllAreConnected()
     {
-        Dictionary<Color, bool> connectionsSuccessMap = new Dictionary<Color, bool>();
+        Dictionary<int, bool> connectionsSuccessMap = new Dictionary<int, bool>();
 
         foreach (mg_connectWires_Node node in startedNodes)
         {
-            if (connectionsSuccessMap.ContainsKey(node.sprRender.color) && connectionsSuccessMap[node.sprRender.color]) // Is already connected?
+            if (connectionsSuccessMap.ContainsKey(node.startIdColor) && connectionsSuccessMap[node.startIdColor]) // Is already connected?
             {
                 continue;
             }
 
             int whileSecurity = 0;
-            mg_connectWires_Node currentNode = node;
-            while (currentNode.connectionNode != null)
+            mg_connectWires_Node currentNodeTest = node;
+            List<mg_connectWires_Node> nodesVisistes = new List<mg_connectWires_Node>(10);
+            nodesVisistes.Add(currentNodeTest);
+            while (currentNodeTest.connectionNode != null || currentNodeTest.connectionByNode != null)
             {
                 whileSecurity++;
 
@@ -108,11 +132,27 @@ public class mg_connectWires_Manager : MonoBehaviour
                     return;
                 }
 
-                currentNode = currentNode.connectionNode;
-
-                if (currentNode.startPoint) // we reach the other start point
+                if (currentNodeTest.connectionNode && !nodesVisistes.Contains(currentNodeTest.connectionNode))
                 {
-                    connectionsSuccessMap.Add(node.sprRender.color, true);
+                    currentNodeTest = currentNodeTest.connectionNode;
+                }
+                else if (currentNodeTest.connectionByNode && !nodesVisistes.Contains(currentNodeTest.connectionByNode))
+                {
+                    currentNodeTest = currentNodeTest.connectionByNode;
+                }
+                else
+                {
+                    break;
+                }
+
+                if (currentNodeTest == null)
+                    continue;
+
+                nodesVisistes.Add(currentNodeTest);
+
+                if (currentNodeTest.startPoint && currentNodeTest != node) // we reach the other start point
+                {
+                    connectionsSuccessMap.Add(node.startIdColor, true);
                     break;
                 }
             }
@@ -120,7 +160,7 @@ public class mg_connectWires_Manager : MonoBehaviour
 
         foreach (mg_connectWires_Node node in startedNodes)
         {
-            if (!connectionsSuccessMap.ContainsKey(node.sprRender.color))
+            if (!connectionsSuccessMap.ContainsKey(node.startIdColor))
             {
                 return;
             }

@@ -12,6 +12,7 @@ public class mg_connectWires_Node : MonoBehaviour
     public mg_connectWires_Node connectionByNode;
 
     public bool startPoint;
+    public int startIdColor;
 
     [System.NonSerialized]
     public SpriteRenderer sprRender;
@@ -35,50 +36,56 @@ public class mg_connectWires_Node : MonoBehaviour
 
     public void Connect(mg_connectWires_Node _otherNode)
     {
+
         if (startPoint)
         {
-            if (sprRender.color != _otherNode.sprRender.color)
+            if (sprRender.color.IsEqual(_otherNode.sprRender.color) == false)
+            {
+                print("Denegado por diferente color");
                 return;
+            }
         }
 
-        if (connectionByNode && connectionByNode.sprRender.color != sprRender.color)
+        if (startPoint == false)
         {
-            connectionByNode.lineRenderer.enabled = false;
-            if (connectionByNode.connectionNode == this)
-            {
-                connectionByNode.connectionNode = null;
-            }
+            //Color
+            Gradient colorGradient = lineRenderer.colorGradient;
+            colorGradient.SetKeys(
+                new GradientColorKey[] { new GradientColorKey(_otherNode.sprRender.color, 0.0f), new GradientColorKey(_otherNode.sprRender.color, 1.0f) },
+                new GradientAlphaKey[] { new GradientAlphaKey(1f, 0.0f), new GradientAlphaKey(1f, 1.0f) }
+            );
+            lineRenderer.colorGradient = colorGradient;
+
+            sprRender.color = _otherNode.sprRender.color;
         }
 
-        lineRenderer.enabled = _otherNode != null;
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, _otherNode.transform.position);
 
-        if (_otherNode)
+        lineRenderer.enabled = true;
+
+        if ((transform.position.x - _otherNode.transform.position.x > 0.1f) ||
+            (transform.position.y - _otherNode.transform.position.y > 0.1f))
         {
-            if (startPoint == false)
-            {
-                //Color
-                Gradient colorGradient = lineRenderer.colorGradient;
-                colorGradient.SetKeys(
-                    new GradientColorKey[] { new GradientColorKey(_otherNode.sprRender.color, 0.0f), new GradientColorKey(_otherNode.sprRender.color, 1.0f) },
-                    new GradientAlphaKey[] { new GradientAlphaKey(1f, 0.0f), new GradientAlphaKey(1f, 1.0f) }
-                );
-                lineRenderer.colorGradient = colorGradient;
-
-                sprRender.color = _otherNode.sprRender.color;
-            }
-
-            //Connection
-            lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, _otherNode.transform.position);
-
-            if (_otherNode.startPoint)
-            {
-                lineRenderer.SetPosition(0, _otherNode.transform.position);
-                lineRenderer.SetPosition(1, transform.position);
-            }
+            connectionNode = _otherNode;
+            _otherNode.connectionByNode = this;
         }
-
-        connectionNode = _otherNode;
-        _otherNode.connectionByNode = this;
+        else
+        {
+            _otherNode.connectionNode = this;
+            connectionByNode = _otherNode;
+        }
     }
+
+    public void Clean()
+    {
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, transform.position);
+        if (startPoint == false)
+        {
+            sprRender.color = Color.white;
+        }
+    }
+
+    
 }

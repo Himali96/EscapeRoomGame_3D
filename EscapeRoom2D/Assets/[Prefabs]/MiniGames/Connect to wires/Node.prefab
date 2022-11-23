@@ -127,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
   connectionNode: {fileID: 0}
-  color: {r: 0, g: 0, b: 0, a: 0}
+  connectionByNode: {fileID: 0}
   startPoint: 0
 --- !u!120 &3511565251774940699
 LineRenderer:
