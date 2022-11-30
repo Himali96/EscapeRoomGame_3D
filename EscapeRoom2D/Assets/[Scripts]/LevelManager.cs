@@ -6,11 +6,22 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
 
+    public GameObject levelCompletePanel;
+
     public bool[] tasksCompleted;
 
     void Awake()
     {
         Instance = this;
+    }
+
+    void Update()
+    {
+        if (IsAllTaskCompleted())
+        {
+            levelCompletePanel.gameObject.SetActive(true);
+            this.enabled = false;
+        }
     }
 
     public bool IsAllTaskCompleted()

@@ -165,9 +165,9 @@ public class mg_connectWires_Manager : MonoBehaviour
                 return;
             }
         }
-
-        print("All conected!!!");
+        
         this.enabled = false;
+        MiniGameLoader.Instance.UnLoadLastLevel(true);
     }
 
 
