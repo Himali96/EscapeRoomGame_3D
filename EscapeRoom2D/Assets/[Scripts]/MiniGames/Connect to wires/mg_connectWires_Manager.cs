@@ -215,4 +215,9 @@ public class mg_connectWires_Manager : MonoBehaviour
         }
 
     }
+
+    public void WiresExitButtonClicked()
+    {
+        gameObject.SetActive(false);
+    }
 }
