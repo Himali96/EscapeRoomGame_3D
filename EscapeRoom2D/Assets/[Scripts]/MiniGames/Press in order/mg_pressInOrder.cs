@@ -33,10 +33,10 @@ public class mg_pressInOrder : MonoBehaviour
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
-            if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("InOrder") && !levelManager.tasksCompleted[1]) //&& levelManager.tasksCompleted[0])
+            if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("InOrder") && levelManager.tasksCompleted[0]) //&& levelManager.tasksCompleted[0])
             {
                 InOrderMGObject.SetActive(true);
-                levelManager.tasksCompleted[1] = true;
+                //levelManager.tasksCompleted[1] = true;
             }
         }
     }
@@ -84,6 +84,8 @@ public class mg_pressInOrder : MonoBehaviour
             {
                 //print("Level completed!");
                 InOrderMGObject.SetActive(false);
+                Level_1_LevelFlowManager._instance.isTask2Completed = true;
+
                 //MiniGameLoader.Instance.UnLoadLastLevel(true);
             }
 

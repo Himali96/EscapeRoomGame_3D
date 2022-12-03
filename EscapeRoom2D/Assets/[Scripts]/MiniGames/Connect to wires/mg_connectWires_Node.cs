@@ -41,7 +41,7 @@ public class mg_connectWires_Node : MonoBehaviour
         {
             if (sprRender.color.IsEqual(_otherNode.sprRender.color) == false)
             {
-                print("Denegado por diferente color");
+                print("Denied for different color");
                 return;
             }
         }
@@ -86,6 +86,4 @@ public class mg_connectWires_Node : MonoBehaviour
             sprRender.color = Color.white;
         }
     }
-
-    
 }

@@ -13,6 +13,8 @@ TagManager:
   - Drawer
   - Door
   - Menu
+  - ClockHand
+  - Carpet
   layers:
   - Default
   - TransparentFX
