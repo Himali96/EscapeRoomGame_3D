@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -172,7 +171,7 @@ public class mg_connectWires_Manager : MonoBehaviour
         Level_1_LevelFlowManager._instance.txtInstructions.text = "You can fix the panel now!";
     }
 
-
+#if UNITY_EDITOR
     [ContextMenu("Create nodes")]
     void CreateMap()
     {
@@ -187,14 +186,14 @@ public class mg_connectWires_Manager : MonoBehaviour
                 pos.y = y * gridSize;
                 pos += offset;
                 
-                GameObject newNode = (GameObject)PrefabUtility.InstantiatePrefab(nodePrefab);
+                GameObject newNode = (GameObject)UnityEditor.PrefabUtility.InstantiatePrefab(nodePrefab);
                 newNode.transform.position = pos;
                 newNode.GetComponent<mg_connectWires_Node>().manager = this;
                 newNode.transform.parent = transform;
             }
         }
-
     }
+    #endif
 
     void OnDrawGizmosSelected()
     {
