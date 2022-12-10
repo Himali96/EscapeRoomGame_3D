@@ -55,6 +55,7 @@ public class mg_memorizeNumbers : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Memorize") && !levelManager.tasksCompleted[1])
             {
+                Level_2_LevelFlowManager._instance.clickSound.Play();
                 flowManager.txtInstructions.text = "";
                 memorizeGameObject.SetActive(true);
                 SetUpNumbers();

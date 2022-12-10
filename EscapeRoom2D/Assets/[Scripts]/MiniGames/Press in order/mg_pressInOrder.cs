@@ -66,17 +66,17 @@ public class mg_pressInOrder : MonoBehaviour
         }
     }
 
-    public void NumberPressed(int _numberPressed)
+    public void NumberPressed(int _numberPressed, int _index)
     {
         DOTween.KillAll();
         progressImg.color = new Color(progressImg.color.r, progressImg.color.g, progressImg.color.b, 1f); ;
-
+        progressImg.color = Color.green;
         if (nextNumberShouldBePressed == _numberPressed)
         {
             // Correct
             nextNumberShouldBePressed++;
             ChangeSprite(correctImg);
-
+            numberButtons[_index].GetComponent<Image>().color = new Color32(100,255,0,200);
             //ChnageColorProgressImg(Color.green);
             //transform.GetChild(serialNumber).
 
@@ -96,6 +96,10 @@ public class mg_pressInOrder : MonoBehaviour
              // Error
             nextNumberShouldBePressed = 1;
             ChangeSprite(incorrectImg);
+            foreach (var num in numberButtons)
+            {
+                num.GetComponent<Image>().color = Color.white;
+            }
             //ChnageColorProgressImg(Color.red);
         }
     }
@@ -104,11 +108,5 @@ public class mg_pressInOrder : MonoBehaviour
     {
         progressImg.sprite = s;
         progressImg.DOFade(0.0f, 2.0f);
-    }
-
-    void ChnageColorProgressImg(Color _color)
-    {
-        progressImg.color = _color;
-        progressImg.DOColor(Color.white, 0.3f).SetDelay(2f);
     }
 }

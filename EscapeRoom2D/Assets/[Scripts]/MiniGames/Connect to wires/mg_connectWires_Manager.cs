@@ -169,6 +169,7 @@ public class mg_connectWires_Manager : MonoBehaviour
         this.enabled = false;
         Level_1_LevelFlowManager._instance.isTask1Completed = true;
         MiniGameLoader.Instance.UnLoadLastLevel(true);
+        Level_1_LevelFlowManager._instance.txtInstructions.text = "You can fix the panel now!";
     }
 
 

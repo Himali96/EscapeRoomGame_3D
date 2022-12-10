@@ -41,9 +41,10 @@ public class mg_connectWires_Node : MonoBehaviour
         {
             if (sprRender.color.IsEqual(_otherNode.sprRender.color) == false)
             {
-                print("Denied for different color");
+                print("Denied for different color"); 
                 return;
             }
+
         }
 
         if (startPoint == false)
@@ -55,7 +56,6 @@ public class mg_connectWires_Node : MonoBehaviour
                 new GradientAlphaKey[] { new GradientAlphaKey(1f, 0.0f), new GradientAlphaKey(1f, 1.0f) }
             );
             lineRenderer.colorGradient = colorGradient;
-
             sprRender.color = _otherNode.sprRender.color;
         }
 

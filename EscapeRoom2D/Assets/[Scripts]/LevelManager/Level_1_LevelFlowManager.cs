@@ -11,7 +11,7 @@ public class Level_1_LevelFlowManager : MonoBehaviour
     public GameObject clockHand, wallClockHand;
     public bool isClockHandFound, isCarpetMoved, isTask1Completed, isTask2Completed;
     public TextMeshPro txtInstructions;
-
+    public AudioSource clickSound;
     public static Level_1_LevelFlowManager _instance;
 
     Ray ray;
@@ -33,45 +33,51 @@ public class Level_1_LevelFlowManager : MonoBehaviour
     {
         //Debug.Log(carpet.localPosition.z);
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit) && Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Carpet") && !isCarpetMoved)
+            if (hit.collider.CompareTag("Carpet") && !isCarpetMoved)
             {
+                clickSound.Play();
                 carpet.DOLocalMoveZ(-3f, 1f);
                 txtInstructions.text = "";
                 isCarpetMoved = true;
             }
-            if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Carpet") && isCarpetMoved)
+            if (hit.collider.CompareTag("Carpet") && isCarpetMoved)
             {
-                //carpet.DOMoveZ(0f, 1f);
+                clickSound.Play();
                 txtInstructions.text = "";
                 isCarpetMoved = false;
             }
-            if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("ClockHand") && !isClockHandFound)
+            if (hit.collider.CompareTag("ClockHand") && !isClockHandFound)
             {
+                clickSound.Play();
                 clockHand.SetActive(false);
                 wallClockHand.SetActive(true);
                 wallClock.GetComponent<BoxCollider>().enabled = true;
                 txtInstructions.text = "You got clock's missing hand.";
                 isClockHandFound = true;
             }
-            if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Door"))
+            if (hit.collider.CompareTag("Door"))
             {
+                clickSound.Play();
                 if (!isTask2Completed) txtInstructions.text = "Fix panel first!";
                 else txtInstructions.text = "";
             }
-            if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("InOrder"))
+            if (hit.collider.CompareTag("InOrder"))
             {
+                clickSound.Play();
                 if (!isTask1Completed) txtInstructions.text = "Fix Clock first!";
                 else txtInstructions.text = "";
             }
-            if (isTask1Completed && isTask2Completed) {
-                roomDoor.DOLocalRotate(new Vector3(0, 0, 0), 3f);
-            }
-            if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Menu"))
+            if (hit.collider.CompareTag("Menu"))
             {
+                clickSound.Play();
                 SceneManager.LoadSceneAsync("Level_2");
             }
+        }
+        if (isTask1Completed && isTask2Completed)
+        {
+            roomDoor.DOLocalRotate(new Vector3(0, 0, 0), 3f);
         }
     }
 }

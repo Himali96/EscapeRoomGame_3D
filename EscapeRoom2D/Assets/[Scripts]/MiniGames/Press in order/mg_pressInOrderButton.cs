@@ -27,17 +27,8 @@ public class mg_pressInOrderButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        //AssignColor();
         b.enabled = true;
-        Debug.Log(b.gameObject.name);
-        manager.NumberPressed(number);
-    }
-
-    public void AssignColor ()
-    {
-        Button b = transform.GetComponent<Button>();
-        ColorBlock cb = b.colors;
-        cb.normalColor = Color.green;
-        b.colors = cb;
+        int _index = int.Parse(b.gameObject.name);
+        manager.NumberPressed(number, _index);
     }
 }

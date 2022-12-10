@@ -27,6 +27,8 @@ public class FixImageManager : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Picture") && !levelManager.tasksCompleted[0])
             {
+                Level_2_LevelFlowManager._instance.clickSound.Play();
+
                 if (flowManager.isScrewDriverFound)
                     pictureGameObject.SetActive(true);
                 else
