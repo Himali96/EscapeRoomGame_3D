@@ -6,8 +6,7 @@ using UnityEngine.EventSystems;
 public class RotateTheImageParts : MonoBehaviour
 {
     public bool isImgFixed = false;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         transform.eulerAngles = new Vector3(0, 0, 90 * Random.Range(1, 4));

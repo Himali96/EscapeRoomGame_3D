@@ -7,13 +7,16 @@ using UnityEngine.SceneManagement;
 
 public class Level_1_LevelFlowManager : MonoBehaviour
 {
+    public static Level_1_LevelFlowManager _instance;
+    
+    // References
     public Transform wallClock, roomDoor, carpet;
     public GameObject clockHand, wallClockHand;
-    public bool isClockHandFound, isCarpetMoved, isTask1Completed, isTask2Completed;
     public TextMeshPro txtInstructions;
     public AudioSource clickSound;
-    public static Level_1_LevelFlowManager _instance;
-
+    
+    public bool isClockHandFound, isCarpetMoved, isTask1Completed, isTask2Completed;
+    
     Ray ray;
     RaycastHit hit;
 

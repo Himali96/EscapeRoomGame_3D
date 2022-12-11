@@ -17,6 +17,7 @@ public class MiniGameLoader : MonoBehaviour
 
     int lastLevelIndex = 0;
 
+    // Observable patterns
     public Action<bool> onRoomViewChange; // isVisible
     public Action onMiniGameOpen;
     public Action<bool> onMiniGameClose; // wasCompleted

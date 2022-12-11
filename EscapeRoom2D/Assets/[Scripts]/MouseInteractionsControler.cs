@@ -10,8 +10,7 @@ public class MouseInteractionsControler : MonoBehaviour
         cam = GetComponent<Camera>();
         MiniGameLoader.Instance.onRoomViewChange += OnRoomViewChange;
     }
-
-
+    
     void Update()
     {
         if (Input.GetMouseButtonDown(0))

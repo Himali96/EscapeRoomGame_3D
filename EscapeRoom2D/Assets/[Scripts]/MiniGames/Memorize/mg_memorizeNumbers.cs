@@ -120,24 +120,19 @@ public class mg_memorizeNumbers : MonoBehaviour
 
         if (numbersToRemember[numbersToRememberIndex] == number)
         {
-            //ChnageColorProgressImg(Color.green);
             ChangeSprite(correctImg);
 
             numbersToRememberIndex++;
 
             if (numbersToRememberIndex == numbersToRemember.Length) // because number begin from 1
             {
-                //print("Level completed!");
                 memorizeGameObject.SetActive(false);
                 levelManager.tasksCompleted[1] = true;
                 flowManager.UnlockTheSafe();
-
-                //MiniGameLoader.Instance.UnLoadLastLevel(true);
             }
         }
         else // Incorrect
         {
-            //ChnageColorProgressImg(Color.red);
             ChangeSprite(incorrectImg);
 
             Invoke(nameof(GenerateRandomsToMemorize), 2f);

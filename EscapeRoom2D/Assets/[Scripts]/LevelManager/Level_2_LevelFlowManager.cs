@@ -7,15 +7,17 @@ using UnityEngine.SceneManagement;
 
 public class Level_2_LevelFlowManager : MonoBehaviour
 {
+    public static Level_2_LevelFlowManager _instance;
+    
     public bool isHandleFound, isScrewDriverFound;
+    
+    // References
     public TextMeshPro txtInstructions, txtToolsNames;
     LevelManager levelManager = null;
     public AudioSource clickSound;
-
     public Transform safeDoor, roomDoor, tableDrawer, frame;
     public GameObject drawerKnob, tools;
-    public static Level_2_LevelFlowManager _instance;
-
+    
     Ray ray;
     RaycastHit hit;
 
@@ -23,16 +25,12 @@ public class Level_2_LevelFlowManager : MonoBehaviour
     {
         if (_instance == null) _instance = this;
     }
-
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         levelManager = GetComponent<LevelManager>();
-        //UnlockTheDoor();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);

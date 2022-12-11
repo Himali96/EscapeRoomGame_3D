@@ -98,7 +98,7 @@ public class mg_connectWires_Manager : MonoBehaviour
 
     public void BtnReset()
     {
-        foreach(mg_connectWires_Node node in GameObject.FindObjectsOfType<mg_connectWires_Node>())
+        foreach(mg_connectWires_Node node in FindObjectsOfType<mg_connectWires_Node>())
         {
             node.Clean();
             node.connectionNode = null;
@@ -106,6 +106,7 @@ public class mg_connectWires_Manager : MonoBehaviour
         }
     }
 
+    // This use a DFS to check if all nodes are connected
     void CheckIfAllAreConnected()
     {
         Dictionary<int, bool> connectionsSuccessMap = new Dictionary<int, bool>();
@@ -121,16 +122,18 @@ public class mg_connectWires_Manager : MonoBehaviour
             mg_connectWires_Node currentNodeTest = node;
             List<mg_connectWires_Node> nodesVisistes = new List<mg_connectWires_Node>(10);
             nodesVisistes.Add(currentNodeTest);
+            
+            // DFS for each node connected until we reach the end or the other point
             while (currentNodeTest.connectionNode != null || currentNodeTest.connectionByNode != null)
             {
                 whileSecurity++;
-
                 if (whileSecurity == 50)
                 {
                     print("Exit from infinity while");
                     return;
                 }
 
+                // Check if the node have a connection
                 if (currentNodeTest.connectionNode && !nodesVisistes.Contains(currentNodeTest.connectionNode))
                 {
                     currentNodeTest = currentNodeTest.connectionNode;
@@ -147,6 +150,7 @@ public class mg_connectWires_Manager : MonoBehaviour
                 if (currentNodeTest == null)
                     continue;
 
+                // Add to process nodes
                 nodesVisistes.Add(currentNodeTest);
 
                 if (currentNodeTest.startPoint && currentNodeTest != node) // we reach the other start point
@@ -157,6 +161,7 @@ public class mg_connectWires_Manager : MonoBehaviour
             }
         }
 
+        // All colors are connected?
         foreach (mg_connectWires_Node node in startedNodes)
         {
             if (!connectionsSuccessMap.ContainsKey(node.startIdColor))
@@ -169,6 +174,11 @@ public class mg_connectWires_Manager : MonoBehaviour
         Level_1_LevelFlowManager._instance.isTask1Completed = true;
         MiniGameLoader.Instance.UnLoadLastLevel(true);
         Level_1_LevelFlowManager._instance.txtInstructions.text = "You can fix the panel now!";
+    }
+    
+    public void WiresExitButtonClicked()
+    {
+        gameObject.SetActive(false);
     }
 
 #if UNITY_EDITOR
@@ -215,10 +225,5 @@ public class mg_connectWires_Manager : MonoBehaviour
             Gizmos.DrawLine(pos1, pos2);
         }
 
-    }
-
-    public void WiresExitButtonClicked()
-    {
-        gameObject.SetActive(false);
     }
 }

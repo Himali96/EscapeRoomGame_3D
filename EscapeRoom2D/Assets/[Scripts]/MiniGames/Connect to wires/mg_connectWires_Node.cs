@@ -44,7 +44,6 @@ public class mg_connectWires_Node : MonoBehaviour
                 print("Denied for different color"); 
                 return;
             }
-
         }
 
         if (startPoint == false)

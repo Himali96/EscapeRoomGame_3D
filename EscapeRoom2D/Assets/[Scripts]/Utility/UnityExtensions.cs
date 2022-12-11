@@ -6,12 +6,12 @@ public static class UnityExtensions
 {
     public static void Shuffle<T>(this IList<T> list)
     {
-        int n = list.Count;
-        while (n > 1)
+        int listCount = list.Count;
+        while (listCount > 1)
         {
-            n--;
-            int k = Random.Range(0, n + 1);
-            (list[k], list[n]) = (list[n], list[k]); // Swap
+            listCount--;
+            int k = Random.Range(0, listCount + 1);
+            (list[k], list[listCount]) = (list[listCount], list[k]); // Swap
         }
     }
 

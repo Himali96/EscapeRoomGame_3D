@@ -18,10 +18,9 @@ public class FixImageManager : MonoBehaviour
         levelManager = GetComponent<LevelManager>();
         flowManager = GetComponent<Level_2_LevelFlowManager>();
     }
-    // Update is called once per frame
+    
     void Update()
     {
-
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
@@ -38,7 +37,6 @@ public class FixImageManager : MonoBehaviour
 
         if (ImageFixedChecker())
         {
-            //Debug.Log("Picture Puzzle Done!");
             levelManager.tasksCompleted[0] = true;
             pictureGameObject.SetActive(false);
             flowManager.UnlockTheDoor();
@@ -49,7 +47,6 @@ public class FixImageManager : MonoBehaviour
     {
         pictureGameObject.SetActive(false);
     }
-
 
     private bool ImageFixedChecker()
     {

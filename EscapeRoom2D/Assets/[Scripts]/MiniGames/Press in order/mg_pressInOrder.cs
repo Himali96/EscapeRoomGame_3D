@@ -77,20 +77,14 @@ public class mg_pressInOrder : MonoBehaviour
             nextNumberShouldBePressed++;
             ChangeSprite(correctImg);
             numberButtons[_index].GetComponent<Image>().color = new Color32(100,255,0,200);
-            //ChnageColorProgressImg(Color.green);
-            //transform.GetChild(serialNumber).
 
             if (nextNumberShouldBePressed == numberButtons.Length + 1) // because number begin from 1
             {
-                //print("Level completed!");
                 InOrderMGObject.SetActive(false);
                 Level_1_LevelFlowManager._instance.isTask2Completed = true;
-
-                //MiniGameLoader.Instance.UnLoadLastLevel(true);
             }
 
         }
-
         else
         {
              // Error
@@ -100,7 +94,6 @@ public class mg_pressInOrder : MonoBehaviour
             {
                 num.GetComponent<Image>().color = Color.white;
             }
-            //ChnageColorProgressImg(Color.red);
         }
     }
 
