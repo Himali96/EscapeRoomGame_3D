@@ -21,6 +21,9 @@ public class Level_2_LevelFlowManager : MonoBehaviour
     Ray ray;
     RaycastHit hit;
 
+    public TextMeshProUGUI timerValue;
+    public float currentTime = 0.0f;
+
     private void Awake()
     {
         if (_instance == null) _instance = this;
@@ -28,11 +31,15 @@ public class Level_2_LevelFlowManager : MonoBehaviour
     
     void Start()
     {
+        currentTime = PlayerPrefs.GetFloat("TimerValue");
         levelManager = GetComponent<LevelManager>();
     }
     
     void Update()
     {
+        currentTime += Time.deltaTime;
+        timerValue.SetText(currentTime.ToString("0"));
+
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
