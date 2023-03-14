@@ -17,8 +17,8 @@ public class Level_1_LevelFlowManager : MonoBehaviour
     
     public bool isClockHandFound, isCarpetMoved, isTask1Completed, isTask2Completed;
 
-    public TextMeshProUGUI timerValue;
-    public float currentTime = 0.0f;
+    
+    
     
     Ray ray;
     RaycastHit hit;
@@ -38,8 +38,7 @@ public class Level_1_LevelFlowManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentTime += Time.deltaTime;
-        timerValue.SetText(currentTime.ToString("0"));
+        
         //Debug.Log(carpet.localPosition.z);
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit) && Input.GetMouseButtonDown(0))
@@ -80,7 +79,7 @@ public class Level_1_LevelFlowManager : MonoBehaviour
             }
             if (hit.collider.CompareTag("Menu"))
             {
-                PlayerPrefs.SetFloat("TimerValue", currentTime);
+                
                 clickSound.Play();
                 SceneManager.LoadSceneAsync("Level_2");
             }

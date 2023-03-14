@@ -3351,7 +3351,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &647985600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5124,6 +5124,7 @@ GameObject:
   - component: {fileID: 859300906}
   - component: {fileID: 859300908}
   - component: {fileID: 859300907}
+  - component: {fileID: 859300909}
   m_Layer: 5
   m_Name: TimerText
   m_TagString: Untagged
@@ -5248,6 +5249,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 859300905}
   m_CullTransparentMesh: 1
+--- !u!114 &859300909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859300905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 331152d5f02b5bf479fe395c781329a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &879368348
 GameObject:
   m_ObjectHideFlags: 0
@@ -8158,7 +8171,7 @@ MonoBehaviour:
   isCarpetMoved: 0
   isTask1Completed: 0
   isTask2Completed: 0
-  timerValue: {fileID: 647985600}
+  timerValue: {fileID: 0}
   currentTime: 0
 --- !u!114 &1595741410 stripped
 MonoBehaviour:

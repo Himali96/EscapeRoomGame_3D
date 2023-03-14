@@ -759,7 +759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2526362577387490149, guid: f1f3468a83d8e4d41b1402c6b38c2e6e, type: 3}
       propertyPath: levelToLoad
-      value: MainMenu
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3898455890105639941, guid: f1f3468a83d8e4d41b1402c6b38c2e6e, type: 3}
       propertyPath: m_Pivot.x
@@ -851,7 +851,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5408101963853577302, guid: f1f3468a83d8e4d41b1402c6b38c2e6e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6764765914152873968, guid: f1f3468a83d8e4d41b1402c6b38c2e6e, type: 3}
       propertyPath: m_IsActive
@@ -6756,7 +6756,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1162813122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9546,6 +9546,7 @@ GameObject:
   - component: {fileID: 1796415763}
   - component: {fileID: 1796415765}
   - component: {fileID: 1796415764}
+  - component: {fileID: 1796415766}
   m_Layer: 5
   m_Name: TimerText
   m_TagString: Untagged
@@ -9670,6 +9671,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1796415762}
   m_CullTransparentMesh: 1
+--- !u!114 &1796415766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796415762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 331152d5f02b5bf479fe395c781329a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1818829123
 GameObject:
   m_ObjectHideFlags: 0
@@ -10261,8 +10274,6 @@ MonoBehaviour:
   frame: {fileID: 1671140641}
   drawerKnob: {fileID: 905284781}
   tools: {fileID: 7181629}
-  timerValue: {fileID: 1162813122}
-  currentTime: 0
 --- !u!1 &1967092211
 GameObject:
   m_ObjectHideFlags: 0
