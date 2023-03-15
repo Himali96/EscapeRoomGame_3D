@@ -1,14 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    private bool isGameStarted = false;
-    private float startTime = 0f;
-    private float endTime = 0f;
+    private float[] levelTimes;
 
     private void Awake()
     {
@@ -21,30 +18,32 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        levelTimes = new float[SceneManager.sceneCountInBuildSettings]; // -1 to exclude the starting scene
     }
 
-    public void StartGame()
+    public void StartLevelTimer(int levelIndex)
     {
-        isGameStarted = true;
-        startTime = Time.time;
+        levelTimes[levelIndex] = Time.time;
     }
 
-    public void EndGame()
+    public void EndLevelTimer(int levelIndex)
     {
-        isGameStarted = false;
-        endTime = Time.time;
-        SceneManager.LoadScene("Scoreboard");
+        levelTimes[levelIndex] = Time.time - levelTimes[levelIndex];
     }
 
-    public float GetElapsedTime()
+    public float GetLevelTime(int levelIndex)
     {
-        if (isGameStarted)
+        return levelTimes[levelIndex];
+    }
+
+    public float GetTotalTime()
+    {
+        float totalTime = 0f;
+        for (int i = 0; i < levelTimes.Length; i++)
         {
-            return Time.time - startTime;
+            totalTime += levelTimes[i];
         }
-        else
-        {
-            return endTime - startTime;
-        }
+        return totalTime;
     }
 }

@@ -5261,6 +5261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 331152d5f02b5bf479fe395c781329a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelIndex: 1
 --- !u!1 &879368348
 GameObject:
   m_ObjectHideFlags: 0
@@ -8171,8 +8172,6 @@ MonoBehaviour:
   isCarpetMoved: 0
   isTask1Completed: 0
   isTask2Completed: 0
-  timerValue: {fileID: 0}
-  currentTime: 0
 --- !u!114 &1595741410 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3609946009200161627, guid: 9c255e093070ffa45bc6d3dd08a57ae0, type: 3}

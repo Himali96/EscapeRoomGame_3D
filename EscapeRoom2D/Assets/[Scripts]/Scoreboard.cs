@@ -8,6 +8,8 @@ public class Scoreboard : MonoBehaviour
     private void Start()
     {
         timerText = GetComponent<TextMeshProUGUI>();
-        timerText.SetText( Mathf.RoundToInt(GameManager.instance.GetElapsedTime()).ToString() + "Sec");
+        timerText.SetText("Level 1 Time: " + Mathf.RoundToInt(GameManager.instance.GetLevelTime(1)).ToString() + "s\n" +
+                           "Level 2 Time: " + Mathf.RoundToInt(GameManager.instance.GetLevelTime(2)).ToString() + "s\n" 
+                           );
     }
 }
