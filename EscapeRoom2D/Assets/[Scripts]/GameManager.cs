@@ -46,4 +46,9 @@ public class GameManager : MonoBehaviour
         }
         return totalTime;
     }
+
+    public void GoToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

@@ -57,8 +57,8 @@ public class Scoreboard : MonoBehaviour
 
             // Set the position of the star object based on its index in the container
             starObject.transform.SetParent(starContainer.transform);
-            starObject.transform.localPosition = new Vector3(i * 0.75f, -0.65f, 0);
-            starObject.transform.localScale = new Vector3(0.03f, 0.03f, 1f);
+            starObject.transform.localPosition = new Vector3(i + 2.25f, 0.05f, 0);
+            starObject.transform.localScale = new Vector3(0.04f, 0.04f, 1f);
         }
     }
 
@@ -73,8 +73,8 @@ public class Scoreboard : MonoBehaviour
 
             // Set the position of the star object based on its index in the container
             starObject.transform.SetParent(starContainer.transform);
-            starObject.transform.localPosition = new Vector3(i * 0.75f, -2.0f, 0);
-            starObject.transform.localScale = new Vector3(0.03f, 0.03f, 1f);
+            starObject.transform.localPosition = new Vector3(i + 2.25f, -1.65f, 0);
+            starObject.transform.localScale = new Vector3(0.04f, 0.04f, 1f);
         }
     }
 }

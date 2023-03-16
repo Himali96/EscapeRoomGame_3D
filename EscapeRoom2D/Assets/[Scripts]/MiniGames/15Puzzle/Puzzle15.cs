@@ -57,7 +57,7 @@ public class Puzzle15 : MonoBehaviour
     void Start()
     {
         pieces = new List<Transform>();
-        size = 4;
+        size = 3;
         CreateGamePieces(0.01f);
     }
 
