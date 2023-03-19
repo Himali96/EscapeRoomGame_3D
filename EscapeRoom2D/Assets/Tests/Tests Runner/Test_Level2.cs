@@ -16,34 +16,34 @@ public class Test_Level2
     [Test]
     public void Test_OpenTaks1()
     {
-        /*Camera cam = Camera.main;
+        Camera cam = Camera.main;
         Ray ray = cam.ScreenPointToRay(new Vector2(Screen.width * 0.8f, Screen.height * 0.2f));
         RaycastHit hit;
         Physics.Raycast(ray, out hit);
         
-        Assert.True(hit.collider != null && hit.collider.name("mario"));*/
+        Assert.IsTrue(hit.collider != null && hit.collider.name.Equals("mario"));
     }
     
     [Test]
     public void Test_OpenTaks2()
     {
-        /*Camera cam = Camera.main;
+        Camera cam = Camera.main;
         Ray ray = cam.ScreenPointToRay(new Vector2(Screen.width * 0.9f, Screen.height * 0.7f));
         RaycastHit hit;
         Physics.Raycast(ray, out hit);
         
-        Assert.True(hit.collider != null && hit.collider.name("Safe A"));*/
+        Assert.IsTrue(hit.collider != null && hit.collider.name.Equals("Safe A"));
     }
     
     [Test]
     public void Test_OpenTaks3()
     {
-        /*Camera cam = Camera.main;
+        Camera cam = Camera.main;
         Ray ray = cam.ScreenPointToRay(new Vector2(Screen.width * 0.2f, Screen.height * 0.5f));
         RaycastHit hit;
         Physics.Raycast(ray, out hit);
         
-        Assert.True(hit.collider != null && hit.collider.name("Knob"));*/
+        Assert.IsTrue(hit.collider != null && hit.collider.name.Equals("Knob"));
     }
 
     [UnityTest]
@@ -54,11 +54,11 @@ public class Test_Level2
         yield return null;
         
         // Find Canvas
-       /* GameObject canvas = GameObject.Find("Canvas");
+        GameObject canvas = GameObject.Find("Canvas");
 
         // All minigmaes start disable
         Assert.IsTrue(canvas.transform.GetChild(0).gameObject.activeSelf == false 
                       && canvas.transform.GetChild(1).gameObject.activeSelf == false 
-                      && canvas.transform.GetChild(2).gameObject.activeSelf == false);*/
+                      && canvas.transform.GetChild(2).gameObject.activeSelf == false);
     }
 }

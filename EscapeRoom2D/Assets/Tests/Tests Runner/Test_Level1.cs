@@ -9,30 +9,29 @@ public class Test_Click
 {
     [SetUp]
     public void SetUp(){
-        //SceneManager.LoadScene("Level_1");
+        SceneManager.LoadScene("Level_1");
     }
     
     // A Test behaves as an ordinary method
     [Test]
     public void Test_OpenTaks1()
     {
-        /*Camera cam = Camera.main;
+        Camera cam = Camera.main;
         Ray ray = cam.ScreenPointToRay(new Vector2(Screen.width * 0.8f, Screen.height * 0.2f));
         RaycastHit hit;
         Physics.Raycast(ray, out hit);
-        
-        Assert.True(hit.collider != null && hit.collider.name("Clock"));*/
+        Assert.IsTrue(hit.collider != null && hit.collider.name.Equals("Clock"));
     }
     
     [Test]
     public void Test_OpenTaks2()
     {
-        /*Camera cam = Camera.main;
+        Camera cam = Camera.main;
         Ray ray = cam.ScreenPointToRay(new Vector2(Screen.width * 0.8f, Screen.height * 0.2f));
         RaycastHit hit;
         Physics.Raycast(ray, out hit);
         
-        Assert.True(hit.collider != null && hit.collider.name("panel_task2"));*/
+        Assert.True(hit.collider != null && hit.collider.name.Equals("panel_task2"));
     }
 
     // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
@@ -45,10 +44,10 @@ public class Test_Click
         yield return null;
         
         // Find Canvas
-        /*GameObject canvas = GameObject.Find("Canvas");
+        GameObject canvas = GameObject.Find("Canvas");
 
         // All minigmaes start disable
         Assert.IsTrue(canvas.transform.GetChild(0).gameObject.activeSelf == false 
-                      && canvas.transform.GetChild(1).gameObject.activeSelf == false);*/
+                      && canvas.transform.GetChild(1).gameObject.activeSelf == false);
     }
 }
