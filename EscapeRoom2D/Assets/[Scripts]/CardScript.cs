@@ -12,14 +12,14 @@ public class CardScript : MonoBehaviour
     private bool isFlipped = false;
     private static CardScript firstCard = null;
     private static CardScript secondCard = null;
-   // private static int score = 0;
-  //  private static Text scoreText;
+    // private static int score = 0;
+    //  private static Text scoreText;
     private static List<int> usedIndexes = new List<int>();
 
     // Start is called before the first frame update
     void Start()
     {
-       // scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
+        // scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
         GenerateImageIndex();
         GetComponent<SpriteRenderer>().sprite = backImage;
     }
@@ -27,7 +27,6 @@ public class CardScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     private void OnMouseDown()
@@ -78,8 +77,8 @@ public class CardScript : MonoBehaviour
     {
         if (firstCard.imageIndex == secondCard.imageIndex)
         {
-           // score += 10;
-           // scoreText.text = "Score: " + score;
+            // score += 10;
+            // scoreText.text = "Score: " + score;
             Destroy(firstCard.gameObject);
             Destroy(secondCard.gameObject);
             firstCard = null;

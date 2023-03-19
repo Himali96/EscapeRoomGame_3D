@@ -11,7 +11,7 @@ public class mg_pressInOrderButton : MonoBehaviour, IPointerClickHandler
     mg_pressInOrder manager = null;
     Button b;
 
-    private void Start ()
+    private void Start()
     {
         b = transform.GetComponent<Button>();
     }

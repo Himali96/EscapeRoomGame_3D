@@ -16,8 +16,8 @@ public class Scoreboard : MonoBehaviour
         float level2Time = GameManager.instance.GetLevelTime(2);
 
         // Display the time taken for each level
-        timerText.SetText("Level 1 Time: " + Mathf.RoundToInt(level1Time).ToString() + "s\n\n" +
-                           "Level 2 Time: " + Mathf.RoundToInt(level2Time).ToString() + "s");
+        timerText.SetText("Level 1 Time: " + Mathf.RoundToInt(level1Time) + "s\n\n" +
+                          "Level 2 Time: " + Mathf.RoundToInt(level2Time) + "s");
 
         // Determine the number of stars for each level based on the time taken
         int level1Stars = CalculateStars(level1Time);
@@ -35,14 +35,13 @@ public class Scoreboard : MonoBehaviour
         {
             return 3;
         }
-        else if (timeTaken <= 40f)
+
+        if (timeTaken <= 40f)
         {
             return 2;
         }
-        else
-        {
-            return 1;
-        }
+
+        return 1;
     }
 
     // Displays the appropriate number of stars

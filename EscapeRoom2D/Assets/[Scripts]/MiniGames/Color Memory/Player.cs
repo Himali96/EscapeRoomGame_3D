@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private Queue<Tile> tiles = new Queue<Tile> ();
+    private Queue<Tile> tiles = new Queue<Tile>();
 
     private bool busy = false;
     private int winCount = 0;
 
-    [SerializeField]
-    private float destroyDelay;
+    [SerializeField] private float destroyDelay;
 
     void Update()
     {
-       
         if (Input.GetMouseButtonDown(0) && !busy)
         {
             Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -25,11 +23,13 @@ public class Player : MonoBehaviour
             {
                 bool queue = true;
 
-                if(tiles.Count >= 2) {
+                if (tiles.Count >= 2)
+                {
                     tiles.Clear();
                 }
-                else if(tiles.Count == 1){
-                    if(tile.Type != tiles.Peek().Type)
+                else if (tiles.Count == 1)
+                {
+                    if (tile.Type != tiles.Peek().Type)
                     {
                         tiles.Peek().Lock();
                         tiles.Clear();
@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
                         StartCoroutine(DestroyTiles(tile));
                     }
                 }
+
                 if (queue)
                 {
                     tile.Unlock();

@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class Interactuable_MiniGame : MonoBehaviour, IInteractuableObject
 {
-
-    bool completed = false; 
+    bool completed = false;
 
     [SerializeField] int taskID = -1;
 

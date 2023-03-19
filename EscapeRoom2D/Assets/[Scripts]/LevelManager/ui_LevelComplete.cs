@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class ui_LevelComplete : MonoBehaviour
 {
     [SerializeField] String levelToLoad;
-    
+
     public void BtnContinue()
     {
         SceneManager.LoadScene(levelToLoad);

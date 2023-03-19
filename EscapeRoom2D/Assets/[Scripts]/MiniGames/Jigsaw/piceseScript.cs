@@ -8,12 +8,13 @@ public class piceseScript : MonoBehaviour
     private Vector3 RightPosition;
     public bool InRightPosition;
     public bool Selected;
+
     void Start()
     {
         RightPosition = transform.position;
         transform.position = new Vector3(Random.Range(5f, 11f), Random.Range(2.5f, -7));
     }
-    
+
     void Update()
     {
         if (Vector3.Distance(transform.position, RightPosition) < 0.5f)

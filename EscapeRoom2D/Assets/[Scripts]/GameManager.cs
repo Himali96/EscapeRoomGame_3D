@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
         {
             totalTime += levelTimes[i];
         }
+
         return totalTime;
     }
 

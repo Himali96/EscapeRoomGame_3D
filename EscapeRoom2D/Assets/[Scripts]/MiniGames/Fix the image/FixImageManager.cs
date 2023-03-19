@@ -18,7 +18,7 @@ public class FixImageManager : MonoBehaviour
         levelManager = GetComponent<LevelManager>();
         flowManager = GetComponent<Level_2_LevelFlowManager>();
     }
-    
+
     void Update()
     {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -52,11 +52,12 @@ public class FixImageManager : MonoBehaviour
     {
         for (int i = 0; i < imageParts.Length; i++)
         {
-            if(!imageParts[i].isImgFixed)
+            if (!imageParts[i].isImgFixed)
             {
                 return false;
             }
         }
+
         return true;
     }
 }

@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+
 public class DragAndDrop_ : MonoBehaviour
 {
     public Sprite[] Levels;
 
     public GameObject SelectedPiece;
-    int OIL = 1;    
+    int OIL = 1;
     public int PlacedPieces = 0;
+
     void Start()
     {
-        for (int i = 0;i < 36; i++)
+        for (int i = 0; i < 36; i++)
         {
             GameObject.Find("Piece (" + i + ")").transform.Find("Puzzle").GetComponent<SpriteRenderer>().sprite = Levels[0];
         }
-        
     }
 
     void Update()
@@ -44,11 +45,13 @@ public class DragAndDrop_ : MonoBehaviour
                 SelectedPiece = null;
             }
         }
+
         if (SelectedPiece != null)
         {
             Vector3 MousePoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            SelectedPiece.transform.position = new Vector3(MousePoint.x,MousePoint.y,0);
-        }             
+            SelectedPiece.transform.position = new Vector3(MousePoint.x, MousePoint.y, 0);
+        }
+
         if (PlacedPieces == 36)
         {
             Debug.Log("You Win!");

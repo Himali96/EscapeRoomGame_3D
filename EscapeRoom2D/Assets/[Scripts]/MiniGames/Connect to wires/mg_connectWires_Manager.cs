@@ -5,17 +5,14 @@ using UnityEngine.UI;
 
 public class mg_connectWires_Manager : MonoBehaviour
 {
-
-    [Header("Nodes")]
-
-    [SerializeField] int gridSizeX = 5;
+    [Header("Nodes")] [SerializeField] int gridSizeX = 5;
     [SerializeField] int gridSizeY = 5;
     public float gridSize = 1;
 
     [SerializeField] GameObject nodePrefab = null;
 
-    [Header("References")]
-    [SerializeField] Camera cam= null;
+    [Header("References")] [SerializeField]
+    Camera cam = null;
     [SerializeField] mg_connectWires_Node[] startedNodes = null;
     [SerializeField] Button resetBtn = null;
 
@@ -31,7 +28,7 @@ public class mg_connectWires_Manager : MonoBehaviour
 
     void OnDisable()
     {
-        if(resetBtn)
+        if (resetBtn)
             resetBtn.gameObject.SetActive(false);
     }
 
@@ -64,7 +61,7 @@ public class mg_connectWires_Manager : MonoBehaviour
             isDragging = false;
             currentNode = null;
         }
-        else if(isDragging && Input.GetMouseButton(0))
+        else if (isDragging && Input.GetMouseButton(0))
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
@@ -93,12 +90,11 @@ public class mg_connectWires_Manager : MonoBehaviour
                 CheckIfAllAreConnected();
             }
         }
-
     }
 
     public void BtnReset()
     {
-        foreach(mg_connectWires_Node node in FindObjectsOfType<mg_connectWires_Node>())
+        foreach (mg_connectWires_Node node in FindObjectsOfType<mg_connectWires_Node>())
         {
             node.Clean();
             node.connectionNode = null;
@@ -122,7 +118,7 @@ public class mg_connectWires_Manager : MonoBehaviour
             mg_connectWires_Node currentNodeTest = node;
             List<mg_connectWires_Node> nodesVisistes = new List<mg_connectWires_Node>(10);
             nodesVisistes.Add(currentNodeTest);
-            
+
             // DFS for each node connected until we reach the end or the other point
             while (currentNodeTest.connectionNode != null || currentNodeTest.connectionByNode != null)
             {
@@ -169,13 +165,13 @@ public class mg_connectWires_Manager : MonoBehaviour
                 return;
             }
         }
-        
-        this.enabled = false;
+
+        enabled = false;
         Level_1_LevelFlowManager._instance.isTask1Completed = true;
         MiniGameLoader.Instance.UnLoadLastLevel(true);
         Level_1_LevelFlowManager._instance.txtInstructions.text = "You can fix the panel now!";
     }
-    
+
     public void WiresExitButtonClicked()
     {
         gameObject.SetActive(false);
@@ -195,15 +191,15 @@ public class mg_connectWires_Manager : MonoBehaviour
                 pos.x = x * gridSize;
                 pos.y = y * gridSize;
                 pos += offset;
-                
-                GameObject newNode = (GameObject)UnityEditor.PrefabUtility.InstantiatePrefab(nodePrefab);
+
+                GameObject newNode = (GameObject) UnityEditor.PrefabUtility.InstantiatePrefab(nodePrefab);
                 newNode.transform.position = pos;
                 newNode.GetComponent<mg_connectWires_Node>().manager = this;
                 newNode.transform.parent = transform;
             }
         }
     }
-    #endif
+#endif
 
     void OnDrawGizmosSelected()
     {
@@ -224,6 +220,5 @@ public class mg_connectWires_Manager : MonoBehaviour
 
             Gizmos.DrawLine(pos1, pos2);
         }
-
     }
 }

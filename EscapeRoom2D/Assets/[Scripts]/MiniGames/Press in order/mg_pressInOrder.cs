@@ -53,7 +53,7 @@ public class mg_pressInOrder : MonoBehaviour
         // Fill answer
         for (int i = 0; i < numberButtons.Length; i++)
         {
-            numbersArray[i] = i+1;
+            numbersArray[i] = i + 1;
         }
 
         // Random it
@@ -69,25 +69,25 @@ public class mg_pressInOrder : MonoBehaviour
     public void NumberPressed(int _numberPressed, int _index)
     {
         DOTween.KillAll();
-        progressImg.color = new Color(progressImg.color.r, progressImg.color.g, progressImg.color.b, 1f); ;
+        progressImg.color = new Color(progressImg.color.r, progressImg.color.g, progressImg.color.b, 1f);
+        ;
         progressImg.color = Color.green;
         if (nextNumberShouldBePressed == _numberPressed)
         {
             // Correct
             nextNumberShouldBePressed++;
             ChangeSprite(correctImg);
-            numberButtons[_index].GetComponent<Image>().color = new Color32(100,255,0,200);
+            numberButtons[_index].GetComponent<Image>().color = new Color32(100, 255, 0, 200);
 
             if (nextNumberShouldBePressed == numberButtons.Length + 1) // because number begin from 1
             {
                 InOrderMGObject.SetActive(false);
                 Level_1_LevelFlowManager._instance.isTask2Completed = true;
             }
-
         }
         else
         {
-             // Error
+            // Error
             nextNumberShouldBePressed = 1;
             ChangeSprite(incorrectImg);
             foreach (var num in numberButtons)

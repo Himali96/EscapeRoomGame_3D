@@ -14,8 +14,7 @@ public class mg_connectWires_Node : MonoBehaviour
     public bool startPoint;
     public int startIdColor;
 
-    [System.NonSerialized]
-    public SpriteRenderer sprRender;
+    [System.NonSerialized] public SpriteRenderer sprRender;
     LineRenderer lineRenderer;
 
     void Start()
@@ -27,8 +26,8 @@ public class mg_connectWires_Node : MonoBehaviour
         {
             Gradient colorGradient = lineRenderer.colorGradient;
             colorGradient.SetKeys(
-                new GradientColorKey[] { new GradientColorKey(sprRender.color, 0.0f), new GradientColorKey(sprRender.color, 1.0f) },
-                new GradientAlphaKey[] { new GradientAlphaKey(1f, 0.0f), new GradientAlphaKey(1f, 1.0f) }
+                new[] {new GradientColorKey(sprRender.color, 0.0f), new GradientColorKey(sprRender.color, 1.0f)},
+                new[] {new GradientAlphaKey(1f, 0.0f), new GradientAlphaKey(1f, 1.0f)}
             );
             lineRenderer.colorGradient = colorGradient;
         }
@@ -36,12 +35,11 @@ public class mg_connectWires_Node : MonoBehaviour
 
     public void Connect(mg_connectWires_Node _otherNode)
     {
-
         if (startPoint)
         {
             if (sprRender.color.IsEqual(_otherNode.sprRender.color) == false)
             {
-                print("Denied for different color"); 
+                print("Denied for different color");
                 return;
             }
         }
@@ -51,8 +49,8 @@ public class mg_connectWires_Node : MonoBehaviour
             //Color
             Gradient colorGradient = lineRenderer.colorGradient;
             colorGradient.SetKeys(
-                new GradientColorKey[] { new GradientColorKey(_otherNode.sprRender.color, 0.0f), new GradientColorKey(_otherNode.sprRender.color, 1.0f) },
-                new GradientAlphaKey[] { new GradientAlphaKey(1f, 0.0f), new GradientAlphaKey(1f, 1.0f) }
+                new[] {new GradientColorKey(_otherNode.sprRender.color, 0.0f), new GradientColorKey(_otherNode.sprRender.color, 1.0f)},
+                new[] {new GradientAlphaKey(1f, 0.0f), new GradientAlphaKey(1f, 1.0f)}
             );
             lineRenderer.colorGradient = colorGradient;
             sprRender.color = _otherNode.sprRender.color;

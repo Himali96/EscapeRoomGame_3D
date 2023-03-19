@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 [DefaultExecutionOrder(-100)]
 public class MiniGameLoader : MonoBehaviour
 {
-
     public static MiniGameLoader Instance { get; private set; }
 
     [SerializeField] GameObject[] roomGameObjectsToHide = null;
@@ -33,7 +32,7 @@ public class MiniGameLoader : MonoBehaviour
 
         foreach (GameObject go in roomGameObjectsToHide)
         {
-            if(go)
+            if (go)
                 go.SetActive(false);
         }
 
@@ -69,5 +68,4 @@ public class MiniGameLoader : MonoBehaviour
         public string name;
         public GameObject gameObject;
     }
-
 }

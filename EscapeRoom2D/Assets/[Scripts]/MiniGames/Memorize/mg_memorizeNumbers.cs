@@ -41,7 +41,7 @@ public class mg_memorizeNumbers : MonoBehaviour
         // Fill numbers in the table
         for (var i = 0; i < numberButtons.Length; i++)
         {
-            numberButtons[i].SetNumber(this, i+1);
+            numberButtons[i].SetNumber(this, i + 1);
             numberButtons[i].SetInteractuable(false);
         }
     }
@@ -98,14 +98,14 @@ public class mg_memorizeNumbers : MonoBehaviour
 
     void HideNumbers()
     {
-        numbersToMemorizeCanvas.DOFade(0f, 0.5f).OnComplete( () =>
+        numbersToMemorizeCanvas.DOFade(0f, 0.5f).OnComplete(() =>
         {
             numbersToMemorizeCanvas.gameObject.SetActive(false);
             for (var i = 0; i < numberButtons.Length; i++)
             {
                 numberButtons[i].SetInteractuable(true);
             }
-        } );
+        });
     }
 
     public void MemorizeExitButtonClicked()
@@ -116,7 +116,8 @@ public class mg_memorizeNumbers : MonoBehaviour
     public void NumberPressed(int number)
     {
         DOTween.KillAll();
-        progressImg.color = new Color(progressImg.color.r, progressImg.color.g, progressImg.color.b, 1f); ;
+        progressImg.color = new Color(progressImg.color.r, progressImg.color.g, progressImg.color.b, 1f);
+        ;
 
         if (numbersToRemember[numbersToRememberIndex] == number)
         {
@@ -154,7 +155,6 @@ public class mg_memorizeNumbers : MonoBehaviour
             tween_colorToWhite.Kill();
         }
 
-        tween_colorToWhite= progressImg.DOColor(Color.white, 0.3f).SetDelay(2f);
+        tween_colorToWhite = progressImg.DOColor(Color.white, 0.3f).SetDelay(2f);
     }
-
 }

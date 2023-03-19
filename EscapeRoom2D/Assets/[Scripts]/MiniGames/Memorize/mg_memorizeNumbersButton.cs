@@ -34,5 +34,4 @@ public class mg_memorizeNumbersButton : MonoBehaviour, IPointerClickHandler
     {
         button.interactable = _v;
     }
-
 }

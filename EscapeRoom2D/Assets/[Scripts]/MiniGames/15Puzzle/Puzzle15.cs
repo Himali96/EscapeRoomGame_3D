@@ -16,7 +16,7 @@ public class Puzzle15 : MonoBehaviour
     private void CreateGamePieces(float gapThickness)
     {
         // This is the width of each tile.
-        float width = 1 / (float)size;
+        float width = 1 / (float) size;
         for (int row = 0; row < size; row++)
         {
             for (int col = 0; col < size; col++)
@@ -25,8 +25,8 @@ public class Puzzle15 : MonoBehaviour
                 pieces.Add(piece);
                 // Pieces will be in a game board going from -1 to +1.
                 piece.localPosition = new Vector3(-1 + (2 * width * col) + width,
-                                                  +1 - (2 * width * row) - width,
-                                                  0);
+                    +1 - (2 * width * row) - width,
+                    0);
                 piece.localScale = ((2 * width) - gapThickness) * Vector3.one;
                 piece.name = $"{(row * size) + col}";
                 // We want an empty space in the bottom right.
@@ -84,10 +84,25 @@ public class Puzzle15 : MonoBehaviour
                     {
                         // Check each direction to see if valid move.
                         // We break out on success so we don't carry on and swap back again.
-                        if (SwapIfValid(i, -size, size)) { break; }
-                        if (SwapIfValid(i, +size, size)) { break; }
-                        if (SwapIfValid(i, -1, 0)) { break; }
-                        if (SwapIfValid(i, +1, size - 1)) { break; }
+                        if (SwapIfValid(i, -size, size))
+                        {
+                            break;
+                        }
+
+                        if (SwapIfValid(i, +size, size))
+                        {
+                            break;
+                        }
+
+                        if (SwapIfValid(i, -1, 0))
+                        {
+                            break;
+                        }
+
+                        if (SwapIfValid(i, +1, size - 1))
+                        {
+                            break;
+                        }
                     }
                 }
             }
@@ -107,6 +122,7 @@ public class Puzzle15 : MonoBehaviour
             emptyLocation = i;
             return true;
         }
+
         return false;
     }
 
@@ -120,6 +136,7 @@ public class Puzzle15 : MonoBehaviour
                 return false;
             }
         }
+
         return true;
     }
 
@@ -140,7 +157,11 @@ public class Puzzle15 : MonoBehaviour
             // Pick a random location.
             int rnd = Random.Range(0, size * size);
             // Only thing we forbid is undoing the last move.
-            if (rnd == last) { continue; }
+            if (rnd == last)
+            {
+                continue;
+            }
+
             last = emptyLocation;
             // Try surrounding spaces looking for valid move.
             if (SwapIfValid(rnd, -size, size))
