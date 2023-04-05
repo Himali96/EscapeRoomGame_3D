@@ -9,7 +9,7 @@ public enum TileType
     Blue,
     Yellow,
     Magenta,
-    White,
+    Black,
     Orange,
     Cyan
 }
@@ -19,7 +19,7 @@ public class Tile : MonoBehaviour
     private TileType type;
     private Color lockedColor;
 
-    private static Color[] ColorLookup = {Color.red, Color.green, Color.blue, Color.yellow, Color.magenta, Color.white, new Color(1.0f, 0.5f, 0.0f), Color.cyan};
+    private static Color[] ColorLookup = {Color.red, Color.green, Color.blue, Color.yellow, Color.magenta, Color.black, new Color(1.0f, 0.5f, 0.0f), Color.cyan};
 
     public void Init(TileType type)
     {

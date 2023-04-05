@@ -82,7 +82,7 @@ public class Level_2_LevelFlowManager : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Menu"))
             {
                 clickSound.Play();
-                SceneManager.LoadSceneAsync("Scoreboard");
+                SceneManager.LoadSceneAsync("Level_3");
             }
         }
     }

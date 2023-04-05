@@ -4,19 +4,19 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using System.Security.Cryptography.X509Certificates;
 
 public class Level_3_LevelFlowManager : MonoBehaviour
 {
     public static Level_3_LevelFlowManager _instance;
 
-    public bool isHandleFound, isScrewDriverFound;
-
     // References
-    public TextMeshPro txtInstructions, txtToolsNames;
+    public TextMeshPro txtInstructions;
     LevelManager levelManager = null;
     public AudioSource clickSound;
-    public Transform safeDoor, roomDoor, tableDrawer, frame;
-    public GameObject drawerKnob, tools;
+    public Transform roomDoor;
+    public GameObject monitor;
+    public GameObject circuitboard;
 
     Ray ray;
     RaycastHit hit;
@@ -29,55 +29,32 @@ public class Level_3_LevelFlowManager : MonoBehaviour
     void Start()
     {
         levelManager = GetComponent<LevelManager>();
+        circuitboard.GetComponent<BoxCollider>().enabled = false;
     }
 
     void Update()
     {
+
+        if (levelManager.tasksCompleted[0])
+        {
+            txtInstructions.text = "Corrupt the switch";
+            monitor.GetComponent<BoxCollider>().enabled = false;
+            circuitboard.GetComponent<BoxCollider>().enabled = true;
+        }
+
+        if (levelManager.tasksCompleted[0] && levelManager.tasksCompleted[1])
+        {
+            UnlockTheDoor();
+        }
+
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
-            if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Knob") && levelManager.tasksCompleted[1])
-            {
-                clickSound.Play();
-                drawerKnob.SetActive(false);
-                txtInstructions.text = "You got Drawer Knob";
-                isHandleFound = true;
-            }
-
-            if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Drawer") && !isScrewDriverFound)
-            {
-                clickSound.Play();
-                if (isHandleFound)
-                {
-                    tools.SetActive(true);
-                    tableDrawer.localEulerAngles = new Vector3(0, 0, 0);
-                    txtInstructions.text = "";
-                }
-                else
-                    txtInstructions.text = "Need a knob to open the drawer";
-            }
-
-            if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Screwdriver"))
-            {
-                clickSound.Play();
-                tools.SetActive(false);
-                txtInstructions.text = "You got Screwdriver";
-                isScrewDriverFound = true;
-            }
-
-            if (hit.collider.CompareTag("Tools") || hit.collider.CompareTag("Screwdriver"))
-            {
-                txtToolsNames.text = hit.collider.gameObject.name;
-            }
-
-            if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Door"))
-            {
-                clickSound.Play();
-                if (!levelManager.tasksCompleted[0] && !levelManager.tasksCompleted[1])
-                {
-                    txtInstructions.text = "Fix the frame to escape";
-                }
-            }
+            //if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("MemoryCircuit") && !levelManager.tasksCompleted[1])
+            //{
+            //    clickSound.Play();
+            //    txtInstructions.text = "You need to crack the code first!";
+            //}
 
             if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Menu"))
             {
@@ -87,24 +64,9 @@ public class Level_3_LevelFlowManager : MonoBehaviour
         }
     }
 
-    public void UnlockTheSafe()
-    {
-        safeDoor.DORotate(new Vector3(0, 90f, 0), 3f);
-    }
-
     public void UnlockTheDoor()
-    {
-        frame.DORotate(new Vector3(0, 180, 90), 3f).OnComplete(FixTheFrame);
-    }
-
-    public void FixTheFrame()
     {
         txtInstructions.text = "";
         roomDoor.DORotate(new Vector3(0, 90f, 0), 3f);
-    }
-
-    public void ToolsExitButtonClicked()
-    {
-        tools.SetActive(false);
     }
 }

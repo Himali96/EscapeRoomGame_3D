@@ -15,6 +15,10 @@ TagManager:
   - Menu
   - ClockHand
   - Carpet
+  - Manager
+  - Puzzle
+  - JigsawPicture
+  - MemoryCircuit
   layers:
   - Default
   - TransparentFX

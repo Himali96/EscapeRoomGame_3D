@@ -62,7 +62,8 @@ public class Player : MonoBehaviour
         busy = false;
         if (winCount == 8)
         {
-            Debug.Log("You won");
+            MiniGameLoader.Instance.UnLoadLastLevel(true);
+            Debug.Log("Color Memory Puzzle Completed");
         }
     }
 }
