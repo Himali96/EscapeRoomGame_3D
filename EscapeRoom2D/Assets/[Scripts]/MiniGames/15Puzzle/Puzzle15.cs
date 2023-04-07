@@ -59,16 +59,23 @@ public class Puzzle15 : MonoBehaviour
         pieces = new List<Transform>();
         size = 3;
         CreateGamePieces(0.01f);
+        shuffling = true;
+        StartCoroutine(WaitShuffle(2.0f));
     }
 
     // Update is called once per frame
     void Update()
     {
         // Check for completion.
-        if (!shuffling && CheckCompletion())
+        //if (!shuffling && CheckCompletion())
+        //{
+            
+            
+        //}
+
+        if(!shuffling && CheckCompletion())
         {
-            shuffling = true;
-            StartCoroutine(WaitShuffle(2.0f));
+            MiniGameLoader.Instance.UnLoadLastLevel(true);
         }
 
         // On click send out ray to see if we click a piece.

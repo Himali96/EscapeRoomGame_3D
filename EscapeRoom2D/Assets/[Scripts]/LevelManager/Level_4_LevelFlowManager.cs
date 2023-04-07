@@ -6,17 +6,17 @@ using DG.Tweening;
 using UnityEngine.SceneManagement;
 using System.Security.Cryptography.X509Certificates;
 
-public class Level_3_LevelFlowManager : MonoBehaviour
+public class Level_4_LevelFlowManager : MonoBehaviour
 {
-    public static Level_3_LevelFlowManager _instance;
+    public static Level_4_LevelFlowManager _instance;
 
     // References
     public TextMeshPro txtInstructions;
     LevelManager levelManager = null;
     public AudioSource clickSound;
     public Transform roomDoor;
-    public GameObject monitor;
-    public GameObject circuitboard;
+    public GameObject oven;
+    public GameObject clock;
 
     Ray ray;
     RaycastHit hit;
@@ -29,7 +29,7 @@ public class Level_3_LevelFlowManager : MonoBehaviour
     void Start()
     {
         levelManager = GetComponent<LevelManager>();
-        circuitboard.GetComponent<BoxCollider>().enabled = false;
+        clock.GetComponent<BoxCollider>().enabled = false;
     }
 
     void Update()
@@ -37,14 +37,14 @@ public class Level_3_LevelFlowManager : MonoBehaviour
 
         if (!levelManager.tasksCompleted[0])
         {
-            txtInstructions.text = "Hack the computer";
+            txtInstructions.text = "Cook the chicken in oven";
         }
 
         if (levelManager.tasksCompleted[0])
         {
-            txtInstructions.text = "Corrupt the switch";
-            monitor.GetComponent<BoxCollider>().enabled = false;
-            circuitboard.GetComponent<BoxCollider>().enabled = true;
+            txtInstructions.text = "Set the time on Clock";
+            oven.GetComponent<BoxCollider>().enabled = false;
+            clock.GetComponent<BoxCollider>().enabled = true;
         }
 
         if (levelManager.tasksCompleted[0] && levelManager.tasksCompleted[1])
@@ -55,23 +55,18 @@ public class Level_3_LevelFlowManager : MonoBehaviour
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
-            //if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("MemoryCircuit") && !levelManager.tasksCompleted[1])
-            //{
-            //    clickSound.Play();
-            //    txtInstructions.text = "You need to crack the code first!";
-            //}
 
             if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Menu"))
             {
                 clickSound.Play();
-                SceneManager.LoadSceneAsync("Level_4");
+                SceneManager.LoadSceneAsync("Scoreboard");
             }
         }
     }
 
     public void UnlockTheDoor()
     {
-        txtInstructions.text = "";
+        txtInstructions.text = "Game Completed";
         roomDoor.DORotate(new Vector3(0, 90f, 0), 3f);
     }
 }

@@ -11,9 +11,12 @@ public class Clock : MonoBehaviour
     [SerializeField]
     private GameObject winText;
 
+    [SerializeField]
+    private GameObject camera;
+
     private void Start()
     {
-        winText.SetActive(false);
+        //winText.SetActive(false);
     }
 
     private void OnMouseDown()
@@ -24,7 +27,8 @@ public class Clock : MonoBehaviour
         if ((Mathf.Round(minuteHand.rotation.eulerAngles.z * 2) / 2) == 30
             && (Mathf.Round(hourHand.rotation.eulerAngles.z * 2) / 2) == 212.5f)
         {
-            winText.SetActive(true);
+            MiniGameLoader.Instance.UnLoadLastLevel(true);
+            //winText.SetActive(true);
         }
     }
 }

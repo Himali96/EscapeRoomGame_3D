@@ -956,7 +956,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: '
 
-    Stay tuned for more levels!'
+    Proceed to next level'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3ab8f94a8e4dd744c99c73fedd26f8f8, type: 2}
   m_sharedMaterial: {fileID: 2383952268681313545, guid: 3ab8f94a8e4dd744c99c73fedd26f8f8, type: 2}
@@ -2252,7 +2252,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Menu
+  m_text: Level 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10995,7 +10995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5770402321706624799, guid: e81d7ec7913a9dd4da8ded7a4214b40a, type: 3}
       propertyPath: roomGameObjectsToHide.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5770402321706624799, guid: e81d7ec7913a9dd4da8ded7a4214b40a, type: 3}
       propertyPath: miniGames.Array.data[0].gameObject
@@ -11017,6 +11017,10 @@ PrefabInstance:
       propertyPath: roomGameObjectsToHide.Array.data[2]
       value: 
       objectReference: {fileID: 1040768855}
+    - target: {fileID: 5770402321706624799, guid: e81d7ec7913a9dd4da8ded7a4214b40a, type: 3}
+      propertyPath: roomGameObjectsToHide.Array.data[3]
+      value: 
+      objectReference: {fileID: 1122404100}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e81d7ec7913a9dd4da8ded7a4214b40a, type: 3}
 --- !u!1 &1691231102
