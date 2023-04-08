@@ -52,7 +52,7 @@ public class DragAndDrop_ : MonoBehaviour
             SelectedPiece.transform.position = new Vector3(MousePoint.x, MousePoint.y, 0);
         }
 
-        if (PlacedPieces == 36)
+        if (PlacedPieces == 2)
         {
             MiniGameLoader.Instance.UnLoadLastLevel(true);
             Debug.Log("Jigsaw Puzzle Completed!");

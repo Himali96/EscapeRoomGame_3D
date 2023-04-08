@@ -50,18 +50,19 @@ public class Level_4_LevelFlowManager : MonoBehaviour
         if (levelManager.tasksCompleted[0] && levelManager.tasksCompleted[1])
         {
             UnlockTheDoor();
-        }
-
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit))
-        {
-
-            if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Menu"))
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit))
             {
-                clickSound.Play();
-                SceneManager.LoadSceneAsync("Scoreboard");
+
+                if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Menu"))
+                {
+                    clickSound.Play();
+                    SceneManager.LoadSceneAsync("Scoreboard");
+                }
             }
         }
+
+       
     }
 
     public void UnlockTheDoor()

@@ -57,7 +57,7 @@ public class Puzzle15 : MonoBehaviour
     void Start()
     {
         pieces = new List<Transform>();
-        size = 3;
+        size = 2;
         CreateGamePieces(0.01f);
         shuffling = true;
         StartCoroutine(WaitShuffle(2.0f));
