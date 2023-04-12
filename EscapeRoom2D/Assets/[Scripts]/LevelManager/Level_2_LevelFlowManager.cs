@@ -92,8 +92,11 @@ public class Level_2_LevelFlowManager : MonoBehaviour
         safeDoor.DORotate(new Vector3(0, 90f, 0), 3f);
     }
 
-    public void UnlockTheDoor()
+    public void UnlockTheDoor() 
     {
+
+        PlayerPrefs.SetInt("Level_2", 1);
+
         frame.DORotate(new Vector3(0, 180, 90), 3f).OnComplete(FixTheFrame);
     }
 

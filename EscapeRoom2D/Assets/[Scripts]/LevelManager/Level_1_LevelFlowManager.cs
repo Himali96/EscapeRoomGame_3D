@@ -86,6 +86,8 @@ public class Level_1_LevelFlowManager : MonoBehaviour
 
         if (isTask1Completed && isTask2Completed)
         {
+            PlayerPrefs.SetInt("Level_1", 1);
+
             roomDoor.DOLocalRotate(new Vector3(0, 0, 0), 3f);
         }
     }

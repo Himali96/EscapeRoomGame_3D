@@ -21,13 +21,13 @@ public class Scoreboard : MonoBehaviour
         timerText.SetText("Level 1 Time: " + Mathf.RoundToInt(level1Time) + "s\n\n" +
                           "Level 2 Time: " + Mathf.RoundToInt(level2Time) + "s\n\n" +
                           "Level 3 Time: " + Mathf.RoundToInt(level3Time) + "s\n\n" +
-                          "Level 4 Time: " + Mathf.RoundToInt(level3Time) + "s");
+                          "Level 4 Time: " + Mathf.RoundToInt(level4Time) + "s");
 
         // Determine the number of stars for each level based on the time taken
-        int level1Stars = CalculateStars(level1Time);
-        int level2Stars = CalculateStars(level2Time);
-        int level3Stars = CalculateStars(level3Time);
-        int level4Stars = CalculateStars(level4Time);
+        int level1Stars = CalculateStarsLvl12(level1Time);
+        int level2Stars = CalculateStarsLvl12(level2Time);
+        int level3Stars = CalculateStarsLvl3(level3Time);
+        int level4Stars = CalculateStarsLvl4(level4Time);
 
         // Display the appropriate number of stars for each level
         DisplayStars(starContainers[0], level1Stars);
@@ -37,8 +37,13 @@ public class Scoreboard : MonoBehaviour
     }
 
     // Calculates the number of stars based on the time taken
-    private int CalculateStars(float timeTaken)
+    private int CalculateStarsLvl12(float timeTaken)
     {
+        if (timeTaken <= 5f)
+        {
+            return 0;
+        }
+
         if (timeTaken <= 30f)
         {
             return 3;
@@ -48,6 +53,52 @@ public class Scoreboard : MonoBehaviour
         {
             return 2;
         }
+
+        
+
+        return 1;
+    }
+
+    private int CalculateStarsLvl3(float timeTaken)
+    {
+
+        if (timeTaken <= 5f)
+        {
+            return 0;
+        }
+
+        if (timeTaken <= 180f)
+        {
+            return 3;
+        }
+
+        if (timeTaken <= 240f)
+        {
+            return 2;
+        }
+
+        
+
+        return 1;
+    }
+
+    private int CalculateStarsLvl4(float timeTaken)
+    {
+        if (timeTaken <= 5f)
+        {
+            return 0;
+        }
+
+        if (timeTaken <= 120f)
+        {
+            return 3;
+        }
+
+        if (timeTaken <= 180f)
+        {
+            return 2;
+        }
+        
 
         return 1;
     }

@@ -99,6 +99,7 @@ public class MainMenuManager : MonoBehaviour
         SetStartUI();
         ProcessLinks();
         SetStartVolume();
+        PlayerPrefs.SetInt("Level_1", 1);
         //PrepareResolutions();
     }
 

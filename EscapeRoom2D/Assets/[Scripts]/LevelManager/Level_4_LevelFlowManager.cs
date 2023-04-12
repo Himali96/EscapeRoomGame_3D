@@ -67,6 +67,8 @@ public class Level_4_LevelFlowManager : MonoBehaviour
 
     public void UnlockTheDoor()
     {
+        PlayerPrefs.SetInt("Level_4", 1);
+
         txtInstructions.text = "Game Completed";
         roomDoor.DORotate(new Vector3(0, 90f, 0), 3f);
     }

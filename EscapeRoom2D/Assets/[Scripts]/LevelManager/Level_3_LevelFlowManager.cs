@@ -71,6 +71,8 @@ public class Level_3_LevelFlowManager : MonoBehaviour
 
     public void UnlockTheDoor()
     {
+        PlayerPrefs.SetInt("Level_3", 1);
+
         txtInstructions.text = "";
         roomDoor.DORotate(new Vector3(0, 90f, 0), 3f);
     }
