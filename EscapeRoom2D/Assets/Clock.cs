@@ -24,8 +24,8 @@ public class Clock : MonoBehaviour
         minuteHand.Rotate(Vector3.back, 30);
         hourHand.Rotate(Vector3.back, 2.5f);
 
-        if ((Mathf.Round(minuteHand.rotation.eulerAngles.z * 2) / 2) == 30
-            && (Mathf.Round(hourHand.rotation.eulerAngles.z * 2) / 2) == 212.5f)
+        if ((Mathf.Round(minuteHand.rotation.eulerAngles.z * 2) / 2) == 0
+            && (Mathf.Round(hourHand.rotation.eulerAngles.z * 2) / 2) == 330)
         {
             MiniGameLoader.Instance.UnLoadLastLevel(true);
             //winText.SetActive(true);

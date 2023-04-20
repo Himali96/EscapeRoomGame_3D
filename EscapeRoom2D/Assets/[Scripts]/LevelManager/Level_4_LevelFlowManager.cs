@@ -42,7 +42,7 @@ public class Level_4_LevelFlowManager : MonoBehaviour
 
         if (levelManager.tasksCompleted[0])
         {
-            txtInstructions.text = "Set the time on Clock";
+            txtInstructions.text = "Set the time on Clock at 1";
             oven.GetComponent<BoxCollider>().enabled = false;
             clock.GetComponent<BoxCollider>().enabled = true;
         }
